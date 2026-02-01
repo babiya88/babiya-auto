@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babiya Site Login</title>
+    <link href="./Babiya Site Login_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./Babiya Site Login_files/all.min.css">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --electric-blue: #00f3ff;
+            --deep-purple: #bc13fe;
+            --dark-bg: #0a0a12;
+            --text-color: #fff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --input-text: #fff;
+        }
+
+        /* Light Mode Variables */
+        body.light-mode {
+            --neon-green: #008f11;
+            --electric-blue: #0077be;
+            --deep-purple: #800080;
+            --dark-bg: #f0f0f0;
+            --text-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --input-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.8) 0%, rgba(5, 5, 10, 1) 100%);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        body.light-mode {
+            background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #e0e0e0 100%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Antigravity Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            }
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 20px;
+            width: 100%;
+            width: 400px;
+            /* Fixed width for consistency */
+            animation: float 6s ease-in-out infinite, pulse-glow 4s infinite;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Cyberpunk accents */
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--deep-purple), transparent, var(--electric-blue));
+            z-index: -1;
+            border-radius: 22px;
+            opacity: 0.5;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue);
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--input-text);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            background: linear-gradient(90deg, var(--electric-blue), var(--deep-purple));
+            color: white;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.6);
+        }
+
+        .btn-google {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Background Bubbles */
+        .bubble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatBubble 15s infinite ease-in-out;
+        }
+
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-20vh) translateX(50px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Action Buttons */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab-whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            box-shadow: 0 0 15px #25D366;
+        }
+
+        .fab-call {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            box-shadow: 0 0 15px #007bff;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--glass-bg);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <i class="fas fa-adjust"></i> Theme
+    </button>
+
+    <!-- Background Bubbles -->
+    <div class="bubble-container" id="bubble-container"><div class="bubble" style="width: 95.1288px; height: 95.1288px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 0.860834%; animation-duration: 17.5978s;"></div><div class="bubble" style="width: 42.0045px; height: 42.0045px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 20.6252%; animation-duration: 14.1818s;"></div><div class="bubble" style="width: 88.4556px; height: 88.4556px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 52.3532%; animation-duration: 17.177s;"></div><div class="bubble" style="width: 24.9669px; height: 24.9669px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 83.7382%; animation-duration: 18.1722s;"></div><div class="bubble" style="width: 84.3379px; height: 84.3379px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 79.5067%; animation-duration: 18.2932s;"></div><div class="bubble" style="width: 76.2206px; height: 76.2206px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 13.0221%; animation-duration: 17.6586s;"></div><div class="bubble" style="width: 71.0462px; height: 71.0462px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 43.2242%; animation-duration: 15.6864s;"></div><div class="bubble" style="width: 92.4778px; height: 92.4778px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 37.2089%; animation-duration: 13.7278s;"></div><div class="bubble" style="width: 71.0166px; height: 71.0166px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 76.9056%; animation-duration: 12.4801s;"></div><div class="bubble" style="width: 71.9968px; height: 71.9968px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 51.3555%; animation-duration: 11.2057s;"></div><div class="bubble" style="width: 99.9796px; height: 99.9796px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 79.2965%; animation-duration: 11.7902s;"></div><div class="bubble" style="width: 94.9609px; height: 94.9609px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 98.7446%; animation-duration: 14.9351s;"></div><div class="bubble" style="width: 30.8861px; height: 30.8861px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 64.9767%; animation-duration: 10.6877s;"></div><div class="bubble" style="width: 92.3397px; height: 92.3397px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 80.5999%; animation-duration: 16.0815s;"></div><div class="bubble" style="width: 93.3771px; height: 93.3771px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 18.1127%; animation-duration: 16.4161s;"></div><div class="bubble" style="width: 30.2126px; height: 30.2126px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 86.8537%; animation-duration: 15.6179s;"></div><div class="bubble" style="width: 88.5113px; height: 88.5113px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 80.0268%; animation-duration: 10.5971s;"></div><div class="bubble" style="width: 65.8125px; height: 65.8125px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 95.0545%; animation-duration: 18.5132s;"></div><div class="bubble" style="width: 28.4019px; height: 28.4019px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 50.0087%; animation-duration: 15.1197s;"></div><div class="bubble" style="width: 75.2855px; height: 75.2855px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 67.8103%; animation-duration: 17.698s;"></div><div class="bubble" style="width: 42.8827px; height: 42.8827px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 23.0359%; animation-duration: 14.5233s;"></div><div class="bubble" style="width: 59.9108px; height: 59.9108px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 25.0525%; animation-duration: 19.3818s;"></div><div class="bubble" style="width: 43.9636px; height: 43.9636px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 25.5025%; animation-duration: 11.0981s;"></div><div class="bubble" style="width: 94.1232px; height: 94.1232px; background: radial-gradient(circle at 30% 30%, rgb(188, 19, 254), transparent); left: 53.4768%; animation-duration: 10.9803s;"></div><div class="bubble" style="width: 32.4933px; height: 32.4933px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 98.5592%; animation-duration: 10.076s;"></div><div class="bubble" style="width: 64.4405px; height: 64.4405px; background: radial-gradient(circle at 30% 30%, rgb(57, 255, 20), transparent); left: 55.0767%; animation-duration: 17.8253s;"></div><div class="bubble" style="width: 53.7938px; height: 53.7938px; background: radial-gradient(circle at 30% 30%, rgb(0, 243, 255), transparent); left: 86.6858%; animation-duration: 11.3574s;"></div></div>
+
+    <!-- Login Container -->
+    <div class="container">
+        <div class="login-card">
+            <div class="logo">BABIYA SITE LOGIN</div>
+
+            <form id="loginForm" onsubmit="event.preventDefault(); window.location.href=&#39;dashboard.html&#39;;">
+
+                <button type="button" class="btn btn-google">
+                    <svg class="google-icon" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M24 12.276c0-.816-.073-1.603-.207-2.366H12.274v4.473h6.58c-.284 1.492-1.076 2.766-2.276 3.568v2.97h3.69c2.16-1.99 3.406-4.915 3.406-8.645z"></path>
+                        <path fill="#34A853" d="M12.274 24c3.24 0 5.955-1.066 7.943-2.883l-3.69-2.969c-1.077.72-2.454 1.15-4.253 1.15-3.125 0-5.772-2.112-6.72-4.95H1.838v3.13C3.812 21.36 8.356 24 12.274 24z"></path>
+                        <path fill="#FBBC05" d="M5.554 14.348c-.244-.73-.383-1.516-.383-2.348 0-.832.14-1.617.383-2.348V6.522H1.838C.667 8.85 0 11.352 0 14c0 2.648.667 5.15 1.838 7.478l3.716-3.13z"></path>
+                        <path fill="#4285F4" d="M12.274 4.15c1.763 0 3.35.607 4.594 1.796l3.435-3.435C18.23 1.066 15.513 0 12.274 0 8.356 0 3.812 2.64 1.838 6.522l3.716 3.13c.948-2.84 3.595-4.95 6.72-4.95z"></path>
+                    </svg>
+                    Login with Google
+                </button>
+
+                <div style="text-align: center; margin: 15px 0; color: var(--text-color); font-size: 0.8rem; opacity: 0.7;">
+                    OR</div>
+
+                <div class="form-group">
+                    <label for="email">USERNAME / EMAIL</label>
+                    <input type="email" id="email" name="email" required="" autofocus="">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" required="">
+                </div>
+
+                <button type="submit" class="btn btn-login">LOGIN</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:0764978991" class="fab fab-call" title="Call Us">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://wa.me/94764978991" target="_blank" class="fab fab-whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Toggle Theme
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Animated Bubbles
+        const bubbleContainer = document.getElementById('bubble-container');
+        const colors = ['#39ff14', '#00f3ff', '#bc13fe'];
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            // Random properties
+            const size = Math.random() * 80 + 20; // 20px to 100px
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const left = Math.random() * 100;
+            const duration = Math.random() * 10 + 10; // 10s to 20s
+
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.background = `radial-gradient(circle at 30% 30%, ${color}, transparent)`;
+            bubble.style.left = `${left}%`;
+            bubble.style.animationDuration = `${duration}s`;
+
+            bubbleContainer.appendChild(bubble);
+
+            // Remove after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // Create initial bubbles
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createBubble, i * 500);
+        }
+
+        // Keep creating bubbles
+        setInterval(createBubble, 1000);
+    </script>
+
+
+</body></html>
